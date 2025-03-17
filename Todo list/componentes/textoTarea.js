@@ -1,5 +1,4 @@
 const textotarea =document.createElement("p");
- textotarea.textContent = "soy una tarea";
- textotarea.id ="ricardomeobligo"
+textotarea.id ="Dannasoto"
 
- export default textotarea;
+export default textotarea;
