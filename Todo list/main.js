@@ -10,12 +10,13 @@ const root = document.getElementById("root")
 const mitarea = new tarea("Hola mundo")
 
 mitarea.texto = "Tacos"
-root.append(mitarea.etiqueta)
 
 root.append(titulo);
 root.append(tareaInput);
 root.append(botonenviar)
 root.append(contenedorTareas);
 root.append(crearTareacontenedor)
+
+
 
  
