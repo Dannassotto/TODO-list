@@ -1,26 +1,26 @@
-
 import contenedorTareas from "./contenedorTareas.js";
 
 function agregarTarea(input) {
   const tarjeta = document.createElement("div");
-  tarjeta.style = `margin: 12px; display: flex; gap: 8px;`;
+  tarjeta.style = `margin: 12px; display: flex; gap: 8px; align-items: center;`;
 
   const parrafoTarea = document.createElement("p");
   parrafoTarea.textContent = input.value.trim();
-  input.value = null;
+  input.value = "";
 
   const botonCompletar = document.createElement("button");
-  botonCompletar.textContent = "tachar";
+  botonCompletar.textContent = "Completar";
   botonCompletar.style = `color: white; background-color: orange; border: 1px solid grey`;
   botonCompletar.addEventListener("click", () => {
-    parrafoTarea.style.textDecoration = parrafoTarea.style.textDecoration === "line-through" ? "" : "line-through";
-    botonCompletar.textContent = parrafoTarea.style.textDecoration === "line-through" ? "Descompletar" : "Completar";
+    const completada = parrafoTarea.style.textDecoration === "line-through";
+    parrafoTarea.style.textDecoration = completada ? "none" : "line-through";
+    botonCompletar.textContent = completada ? "Completar" : "Descompletar";
   });
 
   const botonActualizar = document.createElement("button");
   botonActualizar.textContent = "Actualizar";
   botonActualizar.style = `color: white; background-color: green; border: 1px solid grey`;
-  botonActualizar.addEventListener("click", () => Actualizartarea(input, parrafoTarea));
+  botonActualizar.addEventListener("click", () => actualizarTarea(parrafoTarea));
 
   const botonEliminar = document.createElement("button");
   botonEliminar.textContent = "Eliminar";
@@ -31,13 +31,11 @@ function agregarTarea(input) {
   contenedorTareas.append(tarjeta);
 }
 
-function Actualizartarea(nuevatarea, tarea) {
-  tarea.textContent = nuevatarea.value;
-  nuevatarea.value = "";
-  nuevatarea.placeholder = "tarea actualizada!";
-  setTimeout(() => {
-    nuevatarea.placeholder = "eyy! ingresa tu tarea";
-  }, 3000);
+function actualizarTarea(parrafoTarea) {
+  const nuevaTarea = prompt("Escribe la nueva tarea:", parrafoTarea.textContent);
+  if (nuevaTarea !== null && nuevaTarea.trim() !== "") {
+    parrafoTarea.textContent = nuevaTarea.trim();
+  }
 }
 
 function eliminarTarea(tarjetaTarea) {
